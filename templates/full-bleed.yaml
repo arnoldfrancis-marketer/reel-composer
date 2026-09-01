@@ -1,0 +1,30 @@
+# Clip fills the frame, small logo in the lower corner. No white canvas.
+# Use when the source is already vertical.
+
+name: full-bleed
+canvas:
+  width: 1080
+  height: 1920
+  background: "#000000"
+
+layers:
+  - type: video
+    id: clip
+    source: "m{n}.mp4"
+    crop: auto
+    width: 1080
+    x: center
+    y: center
+
+  - type: image
+    id: logo
+    source: "assets/logo.png"
+    width: 140
+    x: 820
+    y: 1700
+    optional: true
+
+output:
+  name: "{prefix}{n}.mp4"
+  fps: 30
+  crf: 21

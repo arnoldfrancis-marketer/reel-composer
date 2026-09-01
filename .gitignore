@@ -1,0 +1,8 @@
+out/*
+!out/.gitkeep
+input/*
+!input/README.md
+assets/*
+!assets/README.md
+__pycache__/
+.DS_Store

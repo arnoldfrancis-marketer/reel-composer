@@ -1,0 +1,42 @@
+# Tweet card above a cropped clip on a white canvas, logo bottom-centre.
+# The workhorse format for clip-repost pages.
+#
+# Assets expected in --input:  t{n}.png  (tweet screenshot)
+#                              m{n}.mp4  (raw clip, letterbox auto-removed)
+
+name: tweet-clip
+canvas:
+  width: 1080
+  height: 1920
+  background: "#FFFFFF"
+
+layers:
+  - type: image
+    id: tweet
+    source: "t{n}.png"
+    width: 940
+    x: center
+    y: 300
+
+  - type: video
+    id: clip
+    source: "m{n}.mp4"
+    crop: auto              # cropdetect strips baked-in letterboxing
+    width: 1080
+    x: center
+    y: "below:tweet+40"
+    audio: true
+
+  - type: image
+    id: logo
+    source: "assets/logo.png"
+    width: 190
+    x: center
+    y: 1760
+    optional: true          # skipped silently if the file isn't there
+
+output:
+  name: "{prefix}{n}.mp4"
+  fps: 30
+  crf: 20
+  preset: medium

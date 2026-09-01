@@ -1,0 +1,41 @@
+# Hook text above a cropped clip. No image asset needed — captions come from
+# a text file, line N to asset N:
+#
+#   python compose.py --template caption-clip --captions hooks.txt
+
+name: caption-clip
+canvas:
+  width: 1080
+  height: 1920
+  background: "#FFFFFF"
+
+layers:
+  - type: text
+    content: "{caption}"
+    size: 52
+    color: black
+    x: center
+    y: 360
+    line_spacing: 12
+    # font: /System/Library/Fonts/Supplemental/Arial Bold.ttf
+
+  - type: video
+    id: clip
+    source: "m{n}.mp4"
+    crop: auto
+    width: 1080
+    x: center
+    y: 560
+
+  - type: image
+    id: logo
+    source: "assets/logo.png"
+    width: 190
+    x: center
+    y: 1760
+    optional: true
+
+output:
+  name: "{prefix}{n}.mp4"
+  fps: 30
+  crf: 20
